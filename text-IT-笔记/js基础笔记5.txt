@@ -1,0 +1,151 @@
+.unshift(n) : 往数组里面开头位置添加新的数据；
+        	
+        	.join(n) : 把数组拼接成字符串，参数就是把数组里的逗号变成你想要的参数；
+        		返回值 ： 返回值是字符串，不改变原数组；
+        		
+        	.concat(n) : 合并数组；
+        		n参数 : 放一个数组；
+        		返回值 ： 返回值是合并后的新数组，不改变原数组；
+        		
+        	.reverse() : 颠倒原数组的位置（倒序），原数组会发生改变；
+        		没有返回值；
+        		
+        	.sort(function(a,b){}) : 数组排序;
+        		例子：.sort(function(){
+        				return a-b(b-a);
+        			})
+        			如果return 的值为正值：a,b会互换位置；
+        			如果return 的值为负值：a,b不会互换位置；
+        			如果return 的值不确定：会随机排序；
+        			//a-b : 从小到大排序；
+        			//b-a : 从大到小排序；
+        			//(0~1) - 0.5 = (-0.5~0.5);
+        			//Math.random() - 0.5 随机排序；
+        			
+        	.splice(参数一，参数二，参数三~): 单词意思是拼接；
+        		参数一：位置；
+        		参数二：删除数据的个数；
+        		参数三之后的：添加的数据；
+        		
+        		1、增：
+        			arr.splice(n,0,'nba');
+        			
+        		2、删：
+        			arr.splice(n,2);
+        			
+        		3、添：
+        			arr.splice(n,2,'nba1','nba2');
+        			
+        	.indexOf(参数一，参数二) : 
+        		参数一：要找的数组里的数据；
+        		参数二：从什么位置开始找；
+        		
+        			找到数组里面是否有某个数据；
+        				1、返回值如果为-1说明没有；
+        				2、如果有这个数据，返回这个数据所在数据里面的下标位置；
+        				3、如果有多个重复一样的数据，只找首次（第一个）找到的数据；
+
+.pow() : 获取某个数的几次方数；
+        			var box = Math.pow();
+        			返回值：次方数；
+        			
+        		.sqrt() : 一个数的开方数（平方根）；	
+
+String.fromCharCode(传unicode编码序号) : 把unicode编码序号转化成字符；
+
+	trim() : 去掉字符串里的首尾空格；
+	        		返回值：去掉空格后的字符串；
+
+javascript = js 交互功能；
+        	
+        	js划分三大部分：
+        		1、ECMAscript : 规范（语法、数据类型···）；
+        			如：if(){}、for(){}、var、function、6种数据类型···；
+        		
+        		2、DOM操作：又叫文档对象模型,可理解为“通过document窗口，对页面进行（渲染数据变化），设置，获取，改变，删除，增加等等”；
+        			D：document(文档)；
+        			O：object(对象);
+        			M：model(模型);
+        			如：document.getElementById···；
+        			
+        		3、BOM：浏览器对象模型；
+
+已经学的DOM操作：
+        		1、获取元素；
+        			document.getElementById();
+        			document.getElementsByClassName();
+        			document.getElementsByTagName();
+        		
+        		2、获取和设置元素的属性；
+        			元素.属性···；
+        			
+        		3、事件；
+        		
+        	DOM元素按类型分类：
+        		一、层级关系：
+        			1、兄弟关系；
+        			2、父子级关系；
+        			3、祖先级关系；
+        			4、孙子级关系；
+
+按层级来找其他元素：
+        		获取上一个兄弟元素：
+        			previousElementSibling；
+        			previous（上一个） Element（元素） Sibling(兄弟)；
+        			例子：
+        				var a = lis.previousElementSibling；
+        				var a = lis.previousElementSibling.previousElementSibling；//上上一个；
+        				
+        		获取下一个兄弟元素：
+        			nextElementSibling；
+        			next（下一个） Element（元素） Sibling(兄弟)；
+        			例子：
+        				var a = lis.nextElementSibling；
+        				var a = lis.nextElementSibling.nextElementSibling；//下下一个；
+
+.parentNode : 找到某元素的父级元素；
+        	.parentNode.parentNode : 找到某元素的父级的父级元素；
+        	
+        	.offsetParent ： 获取某元素的定位父级;
+
+
+.nodeType : 检测节点的类型；
+        	
+        	.childNodes : 获取元素里面的所有节点；
+        	
+        	.attributes : 获取元素所有属性节点的集合，是一个类数组；
+        	
+        	.nodeName : 节点的名字,指出具体节点的名称，并且元素节点是大写的字母；
+
+
+
+
+获取元素的宽度 ：
+        		.offsetWidth : 获取实际盒模型的宽度；
+        			width + padding + border;
+        		.offsetheight : 获取实际盒模型的高度；
+        			height + padding + border;
+        		
+        		.clientWidth : 获取元素不包括边框的实际盒模型；
+        		.clientheight : 获取元素不包括边框的实际盒模型；
+        		
+        		.getBoundingClientRect() : 返回值是一个集合（对象），对象的内容是元素在可视区（document）的位置、宽高；
+        		
+        	获取一个元素到定位父级的距离：
+        		.offsetLeft : 获取元素到定位父级的最左边距离；
+        		.offsetTop : 获取元素到定位父级的最上边距离；
+        	
+        	获取元素的属性值 : 
+        		.getAttribute() : 获取某个元素下面的某个属性值；
+        			元素.getAttribute('属性名')；
+        			返回值：就是这个属性的值；
+        			
+        		.setAttribute(属性名，属性值) : 设置某个元素下面的某个属性值；
+        			通过setAttribute设置的属性，必须通过getAttribute()来获取自定义属性的值；
+
+
+removeAttribute('属性名') ： 删除元素的属性；   
+
+document.createElement('标签名') : 创建一个元素；
+        	
+父级元素（插入的位置）.appendChild(创建的元素) : 把创建的元素插入到页面里去的父级元素末尾；

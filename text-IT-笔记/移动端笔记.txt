@@ -1,0 +1,59 @@
+移动端：
+			  		
+			 		视口设置：
+			  		     meta标签
+			  				name="viewport"
+			  				content=""
+			 					width : 可视区的宽度
+			  							：device-width || number   
+			  					
+			  
+			  					user-scalable : 页面是否可以缩放
+			  								yes:  可以缩放
+			                               no :  不可以缩放
+			  					initial-scale 初始缩放比例
+			  								: number
+			  					
+			  					minimum-scale=1 最小缩放比例
+								maximum-scale=1 最大缩放比例
+								
+								
+							适配 ： 
+			  		
+			     响应式布局：
+			  			自适应
+			  
+			  
+			  window.devicePixelRatio : 像素比，     可盛放的最大页面的像素和物理像素的比例；
+
+终端：
+			        
+			        适配 ：
+			        	
+			        1.  百分比适配；
+			        
+			        2.  viewport适配,视口适配
+			 			content="width=640,user-scalable=no"；
+
+rem 适配：
+			   	  
+			   	  em  :  相对单位，只相对于父级一个字体大小；
+			   	  
+			   	  rem:  相对单位，相对的是  根标签=html；
+例子：
+<script type="text/javascript">
+			var html = document.getElementsByTagName('html')[0];
+			var head = document.getElementsByTagName('head')[0];
+			var meta = document.createElement('meta');
+			meta.name = 'viewport';
+			
+			var i = window.devicePixelRatio?1/window.devicePixelRatio:1;
+
+			meta.content = 'width=device-width,user-scalable=no,initial-scale='+i+',minimum-scale='+i+',maximum-scale='+i;
+			head.appendChild(meta);
+
+			var w = window.innerWidth;
+			var num = w/18;
+			html.style.fontSize = num+'px';
+			
+		</script>

@@ -1,0 +1,134 @@
+圆角：
+			border-radius:
+				border-top-right-radius:右上圆角；
+				border-top-left-radius:左上圆角；
+				border-bottom-right-radius:右下圆角；
+				border-bottom-left-radius:左下圆角；
+			
+			复合写法：
+				border-radius:10px 20px 30px 40px;
+				border-radius:10px 20px 30px;(未写的会对角相等)
+				border-radius:20px 40px;(未写的会对角相等)
+				
+			不规则圆角：四个角中，每个角都有x和y轴方向可设置；
+			border-radius:10px 20px 30px 40px(x)/50px(y)；
+
+盒子阴影：
+			box-shadow: inset 10px（x偏移量） 10px（y偏移量） 5px(模糊度) 5px（扩散范围） #000；（可以设置无数层，层与层之间以“，”号隔开）
+				x偏移量：（第一个值）；
+				y偏移量：（第二个值）；
+				blur模糊度：（第三个值）
+				扩散范围：（第四个值）；（可选可不选）
+				阴影颜色：（第五个值）；
+				inset:内阴影偏移量；（可选可不选）
+
+文本阴影：
+			text-shadow:10px（x偏移量） 10px（y偏移量） 5px(模糊度) #000(颜色)；
+			
+			rgb:
+			css3：
+				rgba=rgb+opacity(透明度)；
+				写法：background:rgba(250,250,0,.5);
+				第一到第三个值为三基色，取值范围：0~256(16x16);
+				第四值为透明度，取值范围：0~1；
+			
+			浏览器产商：兼容性
+				Chrome:谷歌；
+					Chrome+苹果+欧朋：-webkit-(前缀);
+					
+				Firefox:火狐；
+					Firefox:-moz-(前缀)；
+				
+				IE：微软；
+					IE:-ms-(前缀)；
+					
+			字体描边：-webkit-text-stroke:厚度  颜色；
+				
+			自定义文字：
+			@font-face{
+				src:url();
+				font-family:"abc（自定义取）";
+			}	
+
+过渡动画：
+				transition:当元素的数值类样式发生变化时，有一个动画效果；
+					数值类：只要样式里的值都是数字的这一类；
+			
+				transition-property(属性)：width(宽度)；
+					值的写法：1、sttr(样式)，指定莫一个样式变化时有动画效果；
+							 2、默认值all(全部)；
+							 3、none：都没有效果；
+				
+				transition-duration:过渡动画的时间；
+					值的单位：s(秒)，只有s；
+					
+				transition-delay:延迟时间；	
+					值的单位：s(秒)，只有s；
+					
+				transition-timing-function:过渡的方式；
+					值：1、默认值linear(匀速变化);
+						2、ease（先快后慢）;
+						3、ease-in（匀加速）；
+						4、ease-in-out（先加速后减速）···等等；
+						
+			复合写法transition：1px（过渡时间） 3px(延迟时间) width（指定样式） ease（过渡方式）;
+					transition:1px width , 3px 5px height;
+
+transparent(透明色)：加在颜色里；
+			
+			/*
+			 css多行注释（通常使用）；
+			 * 
+			 * */
+			
+			//单行注释；
+			JS里两种都可以；
+			
+			@import utl("xx.css")；在css里面 引进一个css文件；
+
+背景渐变：
+				background-image:
+				1、线性渐变：background-image:linear-gradient(to bottom,rad 10px,pink,yellow);
+					兼容性：
+							background-image:-webkit-linear-gradient(to bottom,rad 10px,pink,yellow);
+							background-image:-moz-linear-gradient(to bottom,rad 10px,pink,yellow);
+							background-image:-ms-linear-gradient(to bottom,rad 10px,pink,yellow);
+							background-image:linear-gradient(to bottom,rad 10px,pink,yellow);
+							
+					值：(to bottom位置[到下，（从上到下）],rad,pink,yellow[颜色])
+						方向：
+							1、60deg 角度，由下往上，顺时针转动；
+							2、to top,to bottom,to left,to right;
+				2、径向渐变：radial-gradient：（circle,pink,rad）；	
+				30deg：30度角；  单位：deg（度）；
+
+动画：
+				animation:(xx(name) 10s 1/infinite(播放次数));
+				animation-name: (xx(name)关键帧的名字；
+				animation-duration: 10s 关键帧运动一次的时间;
+				animation-delay: 3s 延迟时间;
+				animation-iteration-count: 3/infinite 播放的次数;
+				animation-timing-function:linear 关键帧运动方式;
+				animation-direction: 往返运动;
+						alternate:运动往返;
+						
+				animation-fill-mode: forwards(运动停在结束位置);
+									backwards(运动停在初始位置);
+									both(运动在哪结束就停在哪);
+									
+				animation-play-state(让动画停止): paused;
+				
+			关键帧（动画帧）：
+				keyframes:
+				@keyframes xx(name){
+					0~100%,
+					0{
+						background-position:0 0;
+					}
+					100%{
+						background-position:300 0;
+					}/
+					to{}
+					from{}
+				}
+			单位：帧；

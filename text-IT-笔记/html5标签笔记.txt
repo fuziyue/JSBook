@@ -1,0 +1,30 @@
+		<header>我是headerH5标签</header>
+		<article>我是定义文章</article>
+		<aside>我是定义页面内容之外的内容</aside>
+		<audio src="">我是定义声音内容</audio>
+		<bdi>我是定义文本的文本方向，使其脱离其周围文本的方向设置。</bdi>
+		<canvas>我是定义图片</canvas>
+		<conmand>我是定义命令按钮。</conmand>
+		<datalest>我是定义下拉列表</datalest>
+		<details>我是定义元素的细节。</details>
+		<dialog>我是定义对话框或窗口。</dialog>
+		<embed src="" type="" />我是定义外部交互内容或插件。
+		<figcaption>我是定义 figure（图） 元素的标题。</figcaption>
+		<figure>我是定义媒介内容的分组，以及它们的标题。</figure>
+		<keygen />我是定义生成密钥。
+		<mark>我是定义有记号的文本。</mark>
+		<meter>我是定义预定义范围内的度量。</meter>
+		<nav>我是定义导航链接。</nav>
+		<output>我是定义输出的一些类型。</output>
+		<porgress>我是定义任何类型的任务的进度。</porgress>
+		<rp>我是定义若浏览器不支持 ruby 元素显示的内容。</rp>
+		<rt>我是定义 ruby 注释的解释。</rt>
+		<ruby>我是定义 ruby 注释。</ruby>
+		<section>我是部分内容</section>
+		<source />定义媒介源。
+		<summary>我是为 details 元素定义可见的标题。</summary>
+		<time>我是定义日期/时间。</time>
+		<track>我是定义用在媒体播放器中的文本轨道。</track>
+		<video>我是定义视频。</vedio>
+		<wbr>我是定义可能的换行符。</wbr>
+		<footer>我是footerH5标签</footer>

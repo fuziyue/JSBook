@@ -1,0 +1,55 @@
+盒模型：
+				width+padding+margin+border
+				
+			padding:内边距，拉开内容与内边的距离；
+			margin:拉开元素与元素之间的距离；
+			
+			可视区：width+padding+border；
+			不可视区：margin；
+			
+怪异盒模型：
+			box-sizing:(怪异盒模型)；
+					值；border-box（设置的宽高就是实际盒模型）；
+						content-box（设置的宽高是实际盒模型的一部分）；
+
+			background-clip:背景图片裁剪；
+				值：border-box（默认值）;
+					padding-box;
+					content-box;
+					-webkit-text;
+					
+			background-size（背景图片的大小）:引进一张背景图片，让背景图片等比例的缩放;
+				值：cover:按元素的宽进行缩放；
+					contain:按高等比例缩放；
+					100% 100%：让宽高分别按比例进行缩放；
+
+transform:变换；
+				值：1、scale(数字);等比例缩放  单位：倍数；
+						scaleX();X轴方向等比例缩放
+						scaleY();Y轴方向等比例缩放
+					
+					2、rotate();旋转  单位：deg，度；
+						rotateX();围绕X轴方向旋转；
+						rotateY();围绕Y轴方向旋转；
+
+					3、translate();位移，也叫平移  单位：像素；
+						translateX();在X轴位移;
+						translateY();在X轴位移;
+						translateZ();在Z轴位移;
+					
+					4、skew();斜切， 单位：deg度；
+						skewX();在X轴拉;
+						skewX();在y轴拉;
+
+				复合写法：空格隔开；
+				
+				特点： 1、不会脱离文档流；
+					  2、transform会提升层级，但比定位position小一点；
+					  3、不会改变盒模型；
+						
+			transform-origin:;设置运动的基点 
+				值：方向：x、y、z；（left right center top bottom）,像素.
+
+			3D格式：transform-style:preserve-3d;
+			
+			景深：perspective

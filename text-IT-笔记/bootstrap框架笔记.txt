@@ -1,0 +1,25 @@
+bootstrap框架：
+				
+				使用方式：
+				1、cdn:远程；
+					https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css
+				2、下载到本地；
+				3、cmd；
+				
+			用于兼容IE的编码格式：
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+容器：
+				1、固定宽度容器:class=container;
+					（1）如果是超大屏幕那么container=1170px；
+					（2）如果是中等屏幕那么container=970px；
+					（3）如果是小屏幕那么container=750px；
+					（4）如果是超小屏幕（手机移动端）那么container自适应；
+					
+				2、流体容器：class=container-fluid;
+					width=100%;
+
+删格系统：
+				row:表示一行；
+				col-lg-x:表示列的份数；

@@ -1,0 +1,210 @@
+面向对象：另外一种写代码的方式（把代码抽离出来，封装成函数）；
+				核心：象：抽象：抽离；
+				
+			面向过程：用源生的方式写代码，每一步不可或缺的过程；
+			
+			面向对象分为三步（特点）：
+				1、抽离；
+				2、封装；
+				3、继承（多态）；
+			
+			面向对象的好处：
+				1、代码更简洁；
+				2、容易扩展；
+				3、层次分明；
+
+工厂模式的优点：代码更少，可以批量的生成对象；
+        	
+        	缺点：this的指向不明确；
+例子：
+//工厂模式;
+			function fn (){
+				var obj = {};//原材料；
+				
+				obj.name = 'aa';//加工为产品；
+				obj.age = 18;
+				
+				return obj;//出厂；
+			};
+
+new :  一元运算符；
+        		++ --typeof
+        		
+        	使用会发生的变化：
+        		1、系统自己默认创建一个对象；
+        		2、系统把函数里面的this指向变成了创建的对象；
+        		3、把创建的对象return出来；
+例子：
+function Person(){
+        		//第一步： var obj = {};
+        		
+        		//第二步：改变this的指向；
+        		this.name = 'aa';
+        		this.age = 20;
+        		
+        		//第三步：return obj;
+        	};
+        	
+        	//new 的使用；
+        	var obj = new Person();
+        	console.log(obj);
+
+属性：具体的那个对象；
+        		obj.neme = 2:作用存储数据；
+        		
+        	变量：window；
+        		var a = 2 ：作用存储数据；	
+        	区别：挂的旗下不同；
+        	
+        	方法：具体的那个对象；
+        		obj.tun = function(){};
+        		
+        	函数：window	；
+        		function fn(){};
+        	区别：挂的旗下不同；
+
+面向对象的步骤：
+			  	1、创建一个函数，称构造函数；
+			  	2、在构造函数里面把以前写的函数和变量，变成属性和方法；
+			  	3、把函数和变量都挂在this里面；
+			  	4、调用的时候使用new一元运算符，来改变this指向；
+
+例如：
+	//这是用面向过程写的；	
+			var box = document.getElementsByClassName('box')[0];
+			var inputs = box.getElementsByTagName('input');
+			var divs = box.getElementsByTagName('div');
+				
+			for (var i=0;i<inputs.length;i++) {
+				inputs[i].index = i;
+				inputs[i].onclick = function(){
+					for (var i=0;i<inputs.length;i++) {
+						inputs[i].className = '';
+						divs[i].className = '';
+					};
+					this.className = 'bg';
+					divs[this.index].className = 'show';
+				};
+			};
+
+	//这是用面向对象写的；
+			function Tab(){
+				this.box = document.getElementsByClassName('box')[0];
+				this.inputs = this.box.getElementsByTagName('input');
+				this.divs = this.box.getElementsByTagName('div');
+				var that = this;
+				for (var i=0;i<this.inputs.length;i++) {
+					this.inputs[i].index = i;
+					this.inputs[i].onclick = function(){
+						for (var i=0;i<that.inputs.length;i++) {
+							that.inputs[i].className = '';
+							that.divs[i].className = '';
+						};
+						this.className = 'bg';
+						that.divs[this.index].className = 'show';
+					};
+				};
+			};
+			
+			new Tab();
+
+开发者：就是用面向对象写功能函数的人；
+使用者：使用别人写好的方法的人；
+
+构造函数的特点：
+        		一个方法就一个功能，在方法里面不要再套函数；
+
+原型：原型是一个对象，当声明一个函数时，系统自动的在函数里面生成一个对象，这个对象我们就称为原型对象；
+        		.prototype
+        		
+        	函数本身就是一个特殊的对象；	
+        	
+        	原型链（指针）：当你创建一个实例对象时，我们系统自动生成一个属性，这个属性叫 __proto__ ,这个我们把它称为原型链;
+        	
+        	原型链指向的是这个实例的构造函数的原型对象；
+
+
+
+包装对象：
+        		当给基本数据类型使用方法的时候，
+        		系统偷偷的把基本数据类型给变成了对象，
+        		然后让这个方法来使用属性或者方法，
+        		当方法使用完，又变成基本数据类型，
+        		在这个过程中，这个对象被称为包装对象；
+
+
+in : 判断某个属性是否属于这个对象，不仅在这个对象里面寻找，还会沿着原型链往下（里）找，直到找到为止，如果没有就真的没有；（特性：不准确）
+        		例子：'nba' in obj => 属性 in 对象；
+        		
+        	hasOwnProperty():判断某个属性是否属于这个对象;(特性：准确)
+        		例子：对象.hasOwnProperty('属性')；
+
+constructor : 指出实例对象的构造函数是谁；
+
+instanceof : 它是个二元运算符，它检测对象是否是某个原型链上面的实例对象；
+
+赋值：数据重新复制了一份；
+        	
+        	赋址：对象赋值它不是重新复制一份，而是给于对象一个地址，给存数据的地址；
+
+继承：就是继承面向对象的内容（属性和方法）；
+
+属性继承：就是继承面向对象的属性,
+        			   先调用父级函数，再执行父级函数时，改变父级函数里面的this指向，
+        			   父级代码执行完后，就相当于给予子级添加了属性，通过call或者apply改变this指向；
+例子：
+	function Fzy(name,age,height){
+        		this.name = name;
+        		this.age = age;
+        		this.height = height;
+        	}
+        	
+        	function Fgf(name,age,height){
+        		Fzy.call(this,name,age,height);
+        	}
+        	
+        	var t2 = new Fgf('fzy',16,183);
+
+方法的继承：就是继承面向对象的方法；
+例子：
+function Fzy(name,age,height){
+        		this.name = name;
+        		this.age = age;
+        		this.height = height;
+        	}
+        	
+        	Fzy.prototype.a = function(){
+        		alert('A');
+        	}
+        	Fzy.prototype.b = function(){
+        		alert('B');
+        	}
+        	
+        	function Fgf(name,age,height){
+        		Fzy.call(this,name,age,height);
+        	}
+        	
+        	Fgf.prototype = clon(Fzy.prototype);
+        	
+        	Fgf.prototype.a = function(){
+        		alert('OK');
+        	}
+        	
+        	function clon(obj){
+        		var v = {};
+        		for (var attr in obj) {
+        			if (typeof obj[attr] == 'Object') {
+        				v[attr] = clon(obj[attr]);
+        			} else{
+        				v[attr] = obj[attr];
+        			}
+        		}
+        		return v;
+        	}
+        	
+        	var t1 = new Fzy('fzy',16,183);
+        	var t2 = new Fgf('fgf',18,190);
+        	
+        	t1.a();
+        	t2.a();
+        	console.log(t1,t2);

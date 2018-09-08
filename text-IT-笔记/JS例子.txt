@@ -1,0 +1,844 @@
+聊天框例子：
+<body>
+		<div id="chat" class="chat">
+			<div class="content" id="content">
+				<!--<p class="word"></p>-->
+			</div>
+			<div class="a-chat">
+				<input type="text" id="text" class="text"/>
+				<input type="button" id="btn" value="发送" class="btn"/>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			var text = document.getElementById('text');
+			var btn = document.getElementById('btn');
+			var content = document.getElementById('content');
+			
+			btn.onclick = function(){
+				
+				if(text.value !== ""){//判断text.value的值不等于空的时候，会执行里面代码（有内容时）；
+					
+					//content.innerHTML的里面所有内容  = 在content.innerHTML（自身）的基础上 + 上p标签的内容和样式；
+					content.innerHTML += '<p class="word">'+text.value+'</p>';
+					
+				}else{//没内容时，会出现弹窗‘请输入内容’；
+					alert('请输入内容')
+				};
+				
+				text.value = "";//发送后清空输入框内容；
+			};
+			
+		</script>
+	</body>
+
+聊天记录例子：
+<body>
+		<div class="box">
+			<div id="content">
+				<!--<p class="repaly">sss</p>-->
+			</div>
+			<input type="text"  id="text" class="text"/>
+			<input type="button" id="btn" value="发送" class="btn"/>
+		</div>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var texts = document.getElementById('text');
+			var content = document.getElementById('content');
+			
+			
+			btn.onclick = function(){		
+				if(texts.value !== ''){ //有内容
+					//content.innerHTML = '<p class="repaly">'+texts.value+'</p>';
+					 content.innerHTML = content.innerHTML + '<p class="repaly">'+texts.value+'</p>';
+				}else{//没有内容
+					alert('请输入内容')
+				}
+				
+				texts.value = '';
+			}
+		</script>
+	</body>
+
+
+取模图片例子：
+<body>
+		<div id="box" class="border">
+			<img src="img/meinv/0.jpg" id="img"/>
+		</div>
+		<a href="javascript:;" id="piece">上一张</a>
+		<a href="javascript:;" id="next">下一张</a>
+		<script type="text/javascript">
+			//获取元素next和piece、img；
+			var next = document.getElementById("next");
+			var piece = document.getElementById('piece');
+			var img = document.getElementById('img');
+			
+			//声明number变量等于1；
+			var number = 0;
+			
+			next.onclick = function(){
+				number++;
+
+				img.src="img/meinv/"+number%5+".jpg";
+			};
+			
+			piece.onclick = function(){
+				number--;
+				
+				if(number<0){
+					number = 4;
+				};
+				
+				img.src="img/meinv/"+number%5+".jpg";
+				console.log(number);
+			};
+		</script>
+	</body>
+
+
+旋转例子：
+<body>
+		<div class="box"></div>
+		
+		<script type="text/javascript">
+			var box = document.getElementsByClassName('box')[0];
+			var str = '';
+			
+			for(var i=0;i<36;i++){
+				str = '<div><span>'+(i+1)+'</span>'+str+'</div>';
+			}
+			
+			box.innerHTML = str;
+		</script>
+	</body>
+
+
+选项卡例子：
+<body>
+		<div class="box">
+			<input type="button" value="按钮一" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<div class="small_box">11111</div>
+			<div>222222222</div>
+			<div>33333333</div>
+		</div>
+		
+		<script type="text/javascript">
+			var boxs = document.getElementsByClassName('box')[0];
+			var inputs = document.getElementsByTagName('input');
+			var divs = boxs.getElementsByTagName('div');
+			
+			for (var i=0;i<inputs.length;i++) {
+				//让i这个值赋值给inputs[i]自定义的属性；
+				inputs[i].new_properties = i;
+				//点击按钮的事件；
+				inputs[i].onclick = function(){
+					//点击后，进入小循环，执行下面的代码；
+					for (var k=0;k<inputs.length;k++) {
+						//全部按钮都清空class名；
+						inputs[k].className = '';
+						divs[k].className = '';
+					};
+					//点到哪个按钮就哪个按钮添加背景颜色；
+					this.className = 'bg_pink';
+					//点到哪个按钮就对应哪个divs会出现；
+					divs[this.new_properties].className = 'small_box';
+				};
+				
+			};
+			
+		</script>
+	</body>
+
+
+弄反选例子：
+<body>
+		<a href="javascript:;">全选</a>
+		<a href="javascript:;">不选</a>
+		<a href="javascript:;">反选</a>
+		<div>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+			<input type="checkbox"/>
+		</div>
+		<script type="text/javascript">
+			//获取所有a和input标签，得到两个类数组；
+			var threeA = document.getElementsByTagName('a');
+			var inputN = document.getElementsByTagName('input');
+			
+			//点击threeA类数组的第0序号第一个a标签事件，会执行下面代码；
+			threeA[0].onclick = function(){
+				
+				
+				for(var i=0;i<inputN.length;i++){
+					inputN[i].checked = true;
+				};
+			};
+			
+			//点击threeA类数组的第1序号第二个a标签事件，会执行下面代码；
+			threeA[1].onclick = function(){
+				
+				for (var i=0;i<inputN.length;i++) {
+					inputN[i].checked = false;
+				};
+			};
+			
+			//点击threeA类数组的第2序号第三个a标签事件，会执行下面代码；
+			threeA[2].onclick = function(){
+				
+				//相同的，用变量循环；
+				for (var i=0;i<inputN.length;i++) {
+					
+					if (inputN[i].checked == true) {//判断inputN[i].checked等于真时；
+						inputN[i].checked = false;//重新false赋值给inputN[i].checked；
+					} else{//判断inputN[i].checked等于假时；
+						inputN[i].checked = true;//重新true赋值给inputN[i].checked；
+					}
+				};
+			};
+		</script>
+	</body>
+
+
+计算例子：
+<body>
+		<div class="box" id="box">
+			<p>
+				苹果：<input type="number" min='0' value="0"/>Kg,单价：<span class="price">7￥</span>	,总价：<span class="total">0</span>
+			</p>
+			<p>
+				香蕉：<input type="number" min='0' value="0"/>Kg,单价：<span class="price">3.5￥</span>	,总价：<span class="total">0</span>
+			</p>
+			<p>
+				甘蔗：<input type="number" min='0' value="0"/>10Kg,单价：<span class="price">7￥</span>	,总价：<span class="total">0</span>
+			</p>
+			
+			<p>
+				手机：<input type="number" min='0' value="0"/>Kg,单价：<span class="price">18￥</span>	,总价：<span class="total">0</span>
+			</p>
+			<p>
+				芒果：<input type="number" min='0' value="0"/>Kg,单价：<span class="price">13￥</span>	,总价：<span class="total">0</span>
+			</p>
+			
+			<p>
+				总价格：<span class="allPrice">0</span>,总的商品件数<span class="allNumber">0</span>,所买的商品单价最高<span class="hightPrice">0</span>
+			</p>
+		</div>
+		
+		<script type="text/javascript">
+			// 
+			var box = document.getElementById('box');
+			var inputs = box.getElementsByTagName('input');
+			var price = box.getElementsByClassName('price');
+			var total = box.getElementsByClassName('total');
+			var allPrice = box.getElementsByClassName('allPrice')[0];
+			var allNumber = box.getElementsByClassName('allNumber')[0];
+			var hightPrice = box.getElementsByClassName('hightPrice')[0];
+			var arrNumber = [];
+			var number = [];
+			
+			for(var i=0;i<inputs.length;i++){
+				arrNumber[i] = 0;
+				number[i] = 0;
+				//console.log(number[i])
+				
+				inputs[i].index = i;
+				inputs[i].onchange = function(){
+					//var num = parseFloat(price[this.index].innerHTML);
+					var value = this.value;   // 
+					var index = this.index;  // 下标
+					
+					var pr = price[index].innerHTML;
+					var tPrice = total[index];
+					
+					var num = parseFloat(pr);
+					var t = value*num;
+					
+					tPrice.innerHTML = t;
+					//console.log(value,index,pr,num,t)
+					//total[this.index].innerHTML = num*this.value + '￥';	
+
+					// 总价格总数量				
+					arrNumber[index] = num;
+					if(value == 0){
+						arrNumber[index] = 0;
+					}
+					var maxPrice = -Infinity;
+					// 找最大值
+					for(var i=0;i<arrNumber.length;i++){
+						if(arrNumber[i] > maxPrice){
+							maxPrice = arrNumber[i];
+						}
+					}
+					hightPrice.innerHTML = maxPrice;
+					
+					
+					// 总的商品个数
+					number[index] = parseFloat(value);
+					//console.log(number,arrNumber)
+					var n = 0;
+					var all = 0;
+					for(var i=0;i<number.length;i++){
+						n += number[i]
+						all += number[i]*arrNumber[i];
+					}
+					allNumber.innerHTML = n;
+					allPrice.innerHTML = all;
+				}
+			}
+		
+		</script>
+	</body>
+
+
+无缝有点的轮播图例子：
+<script type="text/javascript">
+			window.onload = function(){
+				//获取元素；
+				var btnLeft = document.getElementById('btnLeft');
+				var btnRight = document.getElementById('btnRight');
+				var list = document.getElementById('list');
+				var lis = document.getElementsByTagName('li');
+				//console.log(lis)
+				var num = 0;
+				var width = getCss(lis[0],'width');
+				
+				//点击右边按钮；
+				btnRight.onclick = function(){
+					num++;
+					//判断num等于第四张图片的时候(超过了的时候)；
+					if (num == lis.length) {
+						//让num返回等于第一张图片;
+						num = 0;
+						//让ul的图片的动画效果消失；
+						list.style.transition = 'none';
+						//让ul的图片往左边运动；
+						list.style.left = -num*width + 'px';
+						
+						//延迟20毫秒；
+						setTimeout(function(){
+							//让num等于第二张图片；
+							num = 1;
+							//让ul的图片的动画效果再次启动等于3s；
+							list.style.transition = '3s';
+							
+							//让ul的图片往左边运动；
+							list.style.left = -num*width + 'px';
+						},20);
+					}else{
+						//让ul的图片往左边运动；
+						list.style.left = -num*width + 'px';
+					};
+				};
+				
+				//点击左边按钮；
+				btnLeft.onclick = function(){
+					num--;
+					
+					//判断num小于第一张图片的时候(超过了的时候)；
+					if (num == -1) {
+						//让num返回等于第五张图片；
+						num = lis.length-1;
+						//让ul的图片的动画效果消失；
+						list.style.transition = 'none';
+						//让ul的图片往右边运动；
+						list.style.left = -num*width + 'px';
+						
+						//延迟20毫秒；
+						setTimeout(function(){
+							//让num等于第四张图片；
+							num = lis.length-2;
+							//让ul的图片的动画效果再次启动等于3s；
+							list.style.transition = '3s';
+							//让ul的图片往左边运动；
+							list.style.left = -num*width + 'px';
+						},20);
+					} else{
+						//让ul的图片往左边运动；
+						list.style.left = -num*width + 'px';
+					};
+					
+				};
+				
+				//获取元素的样式,函数封装，封装的函数有一定的功能；
+	        	function getCss(obj,attr){
+	        		//先声明一个变量num等于空值；
+	        		var num = null;
+	        		
+	        		//判断是否在IE浏览器获取这个元素的样式；
+	        		if (obj.currentStyle) {//是在IE浏览器获取这个元素的样式；
+	        			num = obj.currentStyle[attr];
+	        		} else{//不是在IE浏览器获取这个元素的样式；
+	        			num = getComputedStyle(obj)[attr];
+	        		};
+	        		
+	        		//判断这个样式是否是透明度（opacity）；
+	        		if (attr == 'opacity') {//这个样式是透明度（opacity）；
+	        			return parseFloat(num);
+	        		} else{//这个样式不是透明度（opacity）；
+	        			return Math.ceil(parseFloat(num));
+	        		};
+	        		
+	        		//返回值是num；
+	        		return num;
+	        		//console.log(num);
+	        	};
+			};
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			
+			<ul id="list">
+				<li>
+					<a href="#">
+						<img src="img/1.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/2.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/3.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/4.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/1.jpg"/>
+					</a>
+				</li>
+			</ul>
+			
+			<a href="javascript:;" id="btnLeft"><<</a>
+			<a href="javascript:;" id="btnRight">>></a>
+		</div>
+	</body>
+
+
+<body>
+		<div class="box">
+			
+			<ul id="list">
+				<li>
+					<a href="#">
+						<img src="img/img1.jpeg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/img2.jpeg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/img3.jpeg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/img4.jpeg"/>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/img1.jpeg"/>
+					</a>
+				</li>
+			</ul>
+			<a href="javascript:;" id="btnLeft"><<</a>
+			<a href="javascript:;" id="btnRight">>></a>
+			
+			<nav class="nav">
+				
+			</nav>
+		</div>
+		
+		<script type="text/javascript">
+			var list = document.getElementById('list');
+			var lis = list.getElementsByTagName('li');
+			var btnL = document.getElementById('btnLeft');
+			var btnR = document.getElementById('btnRight');
+			var num = 0;
+			var w = getCSS(lis[0],'width');
+			var nav = document.getElementsByClassName('nav')[0];
+			
+			for(var i=0;i<lis.length-1;i++){
+				if(i==0){
+					nav.innerHTML += '<span class="active"></span>';
+				}else{
+					nav.innerHTML += '<span></span>';
+				}
+				
+			}
+			var spans = nav.getElementsByTagName('span');
+			
+			
+			btnL.onclick = function(){
+				num++;
+				if(num == lis.length){
+					num = 0;
+					list.style.transition = 'none';
+					list.style.left = (-num*w) + 'px';
+					setTimeout(function(){
+						num = 1;
+						list.style.transition = '.5s';
+						list.style.left = (-num*w) + 'px';
+						
+						//span边颜色
+						for(var i=0;i<spans.length;i++){
+							spans[i].className = '';
+						}
+						spans[num%spans.length].className = 'active';
+								
+					},20)	
+				}else{
+					list.style.left = (-num*w) + 'px';
+					//span边颜色
+					for(var i=0;i<spans.length;i++){
+						spans[i].className = '';
+					}
+					spans[num%spans.length].className = 'active';
+				}
+				
+				
+				
+				
+				
+			}
+			
+			btnR.onclick = function(){
+				num--;
+				if(num<0){
+					num = lis.length-1;
+					list.style.transition = 'none';
+					list.style.left = -num*w+'px';
+					
+					setTimeout(function(){
+						num = lis.length-2;
+						list.style.transition = '0.5s';
+						list.style.left = -num*w+'px';
+						for(var i=0;i<spans.length;i++){
+							spans[i].className = '';
+						}
+						spans[num%spans.length].className = 'active';
+						
+					},20)
+				}else{
+					list.style.left = -num*w+'px';
+					for(var i=0;i<spans.length;i++){
+						spans[i].className = '';
+					}
+					spans[num%spans.length].className = 'active';
+				}
+				
+				console.log(num)
+			}
+			// 
+			function getCSS(obj,attr){
+				var num = null;
+				if(obj.currentStyle){
+					num = obj.currentStyle[attr];
+				}else{
+					num = getComputedStyle(obj)[attr]
+				}
+				if(attr == 'opacity'){
+					return parseFloat(num);
+				}else{
+					return Math.ceil(parseFloat(num));
+				}
+			}
+		</script>
+	</body>
+
+
+添加和删除的图片运动的例子：
+<body>
+		<input type="button" name="btn" id="btn" value="变" />
+		<div class="box">
+			<img src="img/meinv/1.jpg" class="img1"/>
+			<img src="img/meinv/2.jpg" class="img2"/>
+			<img src="img/meinv/3.jpg" class="img3"/>
+			<img src="img/meinv/4.jpg" class="img4"/>
+		</div>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var box = document.getElementsByClassName('box')[0];
+			var imgs = document.getElementsByTagName('img');
+			
+			//创建个数组里面放四个空对象，对应储存对象值；
+			var arr = [{},{},{},{}];
+			
+			for (var i=0;i<arr.length;i++) {
+				arr[i] = {
+					top:getCSS(imgs[i],'top'),
+					left:getCSS(imgs[i],'left'),
+					width:getCSS(imgs[i],'width'),
+					height:getCSS(imgs[i],'height'),
+					opacity:getCSS(imgs[i],'opacity')
+				}
+				//console.log(arr[i])
+			}
+			
+			btn.onclick = function(){
+				//先删除第一个arr数组的数据；
+				var a = arr.shift();
+				//再添加到arr数组里最后的一个数据；
+				var b =arr.push(a);
+				
+				for (var i=0;i<arr.length;i++) {
+					moreMove(imgs[i],arr[i],1000,'linear');
+				}
+				console.log(arr);
+			}
+		</script>
+	</body>
+
+
+添加和删除的运动的例子：
+<body>
+		<input type="button" name="btn" id="btn" value="变" />
+		<div class="box"></div>
+		<script type="text/javascript">
+			var box = document.getElementsByClassName('box')[0];
+			var btn = document.getElementById('btn');
+			
+			var arr = ['one','two','three','fove','five'];
+			
+			//往box标签覆盖数组arr的数据内容；
+			for(var i=0;i<arr.length;i++){
+				box.innerHTML += arr[i] + ' ';
+			}
+			
+			btn.onclick = function(){
+				//先删除第一个数据；
+				var delete_first = arr.shift();
+				//再添加一个删除的数据在末尾；
+				var add_tail = arr.push(delete_first);
+				
+				//先让box里面的内容为空；
+				box.innerHTML = '';
+				
+				//再往box添加覆盖内容；
+				for (var i=0;i<arr.length;i++) {
+					box.innerHTML += arr[i] + ' ';
+				}
+			}
+			
+		</script>
+	</body>
+
+
+让首字母大写的例子：
+<script type="text/javascript">
+			var name = 'lian he gong hai';
+			
+			//切割字符串变成数组；
+			var arr = name.split(' ');
+			
+			var str = '';
+			
+			for (var i=0;i<arr.length;i++) {
+				//寻找数组里的每个首个字母；
+				var indexWord = arr[i].charAt(0);
+				
+				//把单个字符 的首个字母再切割成数组；
+				var zq = arr[i].split(indexWord);
+				
+				//把首个字母变成大写字母；
+				var dx = indexWord.toLocaleUpperCase();
+				
+				//组合Lian + He + Gon + Hai;
+				str += dx + zq[1] + ' ';
+				
+				//str += arr[i].charAt(0).toLocaleUpperCase() + arr[i].split(indexWord)[1] + ' ';
+			};
+			//console.log(str)
+		</script>
+
+
+split()的例子：
+<body>
+		<input type="text" name="text" id="text" value="" />
+		<input type="button" name="btn" id="btn" value="查询" />
+		<div class="box">
+			3月13日，93比109不敌火箭，马刺遭遇三连败，球队战绩排名跌到西部第十。过去20年，我们已经习惯了圣城军团高歌猛进，驰骋在联盟第一集团。但是这个赛季的圣城风雨飘摇，诉说着它的苍老与疲惫。马刺主帅格雷格-波波维奇在今天同火箭比赛前接受了记者采访，表示目前仍没有科怀-伦纳德确切的复出日期。
+		</div>
+		<script type="text/javascript">
+			var text = document.getElementById('text');
+			var btn = document.getElementById('btn');
+			var box = document.getElementsByClassName('box')[0];
+			//var info = box.innerHTML;
+			
+			btn.onclick = function(){
+				var value = text.value;//获取输入框里的输入信息；
+				
+				var arr = box.innerHTML.split(value);//写入box的内容切割成数组；
+				var str = '';//先声明个空字符串；
+				
+				for (var i=0;i<arr.length;i++) {
+					//
+					if(i == 0){
+						str += arr[i];//让切割成数组的数据重复赋值给str空字符串，让空的字符串str变成有数据的字符串；
+					}else{
+						//往value写入的值，对应拼接写入box覆盖内容；
+						str += '<mark>'+value+'</mark>'+arr[i];
+					}
+					//console.log(str)
+				}
+				
+				box.innerHTML = str;
+			}
+		</script>
+	</body>
+
+
+indexOf()的例子：
+<body>
+		<input type="text" name="text" id="text" value="" />
+		<p>3月13日，93比109不敌火箭，马刺遭遇三连败，球队战绩排名跌到西部第十。过去20年，我们已经习惯了圣城军团高歌猛进，驰骋在联盟第一集团。但是这个赛季的圣城风雨飘摇，诉说着它的苍老与疲惫。马刺主帅格雷格-波波维奇在今天同火箭比赛前接受了记者采访，表示目前仍没有科怀-伦纳德确切的复出日期。</p>
+		<input type="button" name="btn" id="btn" value="查询" />
+		<div class="box">
+			
+		</div>
+		<script type="text/javascript">
+			var text = document.getElementById('text');
+			var p = document.getElementsByTagName('p')[0].innerHTML;
+			var btn = document.getElementById('btn');
+			var box = document.getElementsByTagName('div')[0];
+			
+			btn.onclick = function(){
+				var value = text.value;//叫text的输入框的输入值；
+				//aabbb;
+				//先找到第一个字符的位置；
+				var num = p.indexOf(value);
+				
+				//用数组储存字符位置；
+				var k = 0;
+				var arr = [num];
+				
+				//从找到的第一个字符的后面位置开始找，因为字符串里面找不到想要的字符会出现-1的结果；
+				while (p.indexOf(value,num+1) != -1){
+					num = p.indexOf(value,num+1);
+					k++;
+					arr[k] = [num];
+				};
+				
+				for (var i=0;i<arr.length;i++) {
+					//然后往box重复覆盖写入数组储存的字符位置数据；
+					box.innerHTML += arr[i]+' '; 
+				};
+			};
+		</script>
+	</body>
+
+
+//charAt的例子：
+<script type="text/javascript">
+			//必须先有字符串；
+			var str = '的撒发生了啊啊啊啊';
+			//给个初始值做标记；
+			var num = 0;
+			//给个空数组初始值做标记；
+			var arr = [];
+			//要提取字符串的下标，就要循环；
+			for(var i=0;i<str.length;i++){
+				//判断字符串里有 '啊' 这个字符；
+				if (str.charAt(i) == '啊') {
+					
+					//此方法可以找到相同的字符在字符串里对应的下标各为多少；
+					arr[num] = i;//如：第一个 '啊' 字符下标为5，让它i数据保存在arr数组里；
+					
+					//此方法可以找到字符串里有多少个相同的数据；
+					num++;//有就让初始值加一记录 '啊' 字符的个数；
+				}
+			}
+			console.log(num);
+		</script>
+
+
+//获取区间值随机数；
+			//min:可以取最小值；
+			//max:可以取最大值；
+			//choose:最大、最小都可以取选择；
+			function getRandom(min,max,choose){
+				switch (choose){
+					case 'max':
+						//向上取整（先随机X（最大值-最小值）+ 最小值）;
+						return Math.ceil(Math.random()*(max-min)+min);
+						break;
+						//向下取整（先随机X（最大值-最小值）+ 最小值）;
+					case 'min': Math.floor(Math.random()*(max-min)+min);
+						break;
+						//四舍五入取整（先随机X（最大值-最小值）+ 最小值）;
+					case 'both': Math.round(Math.random()*(max-min)+min);
+						break;
+				};
+			};
+
+
+//用Math.max()方法比较找出最大值；
+        	var max = -Infinity;
+        	var arr = [21,21,432,5,6,99];
+        	for (var i=0;i<arr.length;i++) {
+        		max = Math.max(arr[i],max);
+        	};
+        	
+        	//用Math.min()方法比较找出最小值；
+        	var min = Infinity;
+        	var arr1 = [55,21,432,5,6666,99];
+        	for (var i=0;i<arr1.length;i++) {
+        		min = Math.min(arr1[i],min);
+        	}
+
+
+从页面获取信息例子：
+<body>
+		账户：<input type="text" name="text" id="text" value="" />
+		<br />
+		密码：<input type="password" name="password" id="password" value="" />
+		<br />
+		<input type="button" name="btn" id="btn" value="登录" />
+		<script type="text/javascript">
+			var inputs = document.getElementsByTagName('input');
+			
+			inputs[2].onclick = function(){
+				//获取输入框输入的信息；
+				var account = inputs[0].value;//账户的输入框；
+				var passWord = inputs[1].value;//密码的输入框；
+				
+				//用对象保存获取输入框输入的信息；
+				var obj = {
+					"account":account,
+					"passWord":passWord
+				};
+				
+				//对象保存获取输入框输入的信息，传给后台需要转化JSON字符串；
+				var json = JSON.stringify(obj);
+				console.log(json);
+			}
+		</script>
+	</body>

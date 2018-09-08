@@ -1,0 +1,223 @@
+ajax : a(Asynchronous) j(javasctipt) a(and) x(xml) 异步的js和xml;
+        		概念：前端和后台进行数据交互的一种技术；
+        		优点：
+        			1、不会跳转页面；
+        			2、能进行局部刷新；
+        			3、提升用户体验；
+        	
+        	服务器：（主要分两种）
+        		第一种：iis;
+        		第二种：阿帕奇；
+        		
+        	http://localhost =	127.0.0.1 （访问自己电脑的ip地址）；
+        	
+        	PHP ： 
+        		在过去（没有ajax之前）用得就是表单来和后台进行数据交互；
+        			缺点：会跳转页面；
+
+打电话的步骤：
+        		1、找一部电话；
+        		2、输入电话号码；
+        		3、拨号；
+        		4、等待接通；
+        		5、通话；
+        	
+        	ajax的步骤：
+        		1、实例化ajax对象；
+        		2、实例对象下面的方法open(参数一、参数二、参数三)；
+        			必须放三个参数：
+        				参数一：把前端的数据发送给后台的方式；
+						'get'和'post';
+        						get传送方式的特点：
+        							1、传送的数据在浏览器的缓存机制里面可以看见，所以安全性比较低；
+        							2、传送的数据只能放在地址栏；
+        							3、传送给后台数据的大小有限制，最多传送2000字节，一个字等于2字节；
+        							4、在低版本的IE里面，传送中文会报错，为了防止它报错，必须把中文转URI码；
+        								encodeURI('林志玲'):把中文转译URI编码;
+									decodeURI('URI码')：把URI编码转译中文；
+							post传送方式的特点：
+        							1、相对于get方式来说，安全性高；
+        							2、post的数据是放在send()里面发送的；
+        							3、理论上post传送数据没有大小限制，因为是属于自定义的，它的大小是可以自己随意改的；
+        							4、必须设置请求头:ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        							5、在低版本IE浏览器里面，中文汉字不需要再转码；
+        				参数二：php文件夹里的文件；
+        				参数三：true;
+					true  =>	异步： 非阻塞模式   代码不按顺序执行，代码互不干扰  例子：定时器；
+        				false =>	同步： 阻塞模式  代码按顺序执行；	
+        		3、发送数据信息send();
+				send('放post的数据')；
+        		4、onload事件来等待；
+				onload事件 : 在ajax里面，ajax.readyState =>ajax状态值为4，只有ajax状态值为4才执行onload事件；（在低版本IE不兼容又是w3c官方标准）
+        			onreadystatechange事件 : 在ajax里面，ajax.readyState =>ajax状态值为2，3，4，只要ajax状态值改变一次onreadystatechange事件就会执行一次；
+        		5、接收信息；
+例子一：
+<input type="button" id="btn" value="提交" />
+        <script type="text/javascript">
+        	var btn = document.getElementById('btn');
+        	btn.onclick = function(){
+        		//第一步；
+        		var ajax = new XMLHttpRequest();
+        		
+        		//第二步；
+        		ajax.open('get','php/1.php',true);
+        		
+        		//第三步；
+        		ajax.send();
+        		
+        		//第四步；
+        		ajax.onload = function(){
+        			//第五步；
+        			var text = ajax.responseText;
+				console.log(text)；
+        		};
+        	};
+        </script>
+
+例子二（较完整的）：
+<input type="button" id="btn" value="提交" />
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			
+			btn.onclick = function(){
+				var ajax = new XMLHttpRequest();
+				
+				ajax.open('get','php/get_async.php?user=11',true);
+				
+				ajax.send();
+				
+				ajax.onreadystatechange = function(){
+					if(ajax.readyState == 4){  // 判断ajax的流程有没有走完
+						// 判断是否是  http状态是否为2开头
+						if(ajax.status>=200&ajax.status<=207){//后台给我们的反馈是否正确
+							// 等待结果
+							console.log(ajax.responseText);	
+						}else{
+							alert(ajax.status);
+						}
+					}
+				}
+				/*
+				    http协议码 ： ajax.statusText
+				 * 
+				*/
+			}
+
+jq里面的ajax  :
+			     		
+			     		$.ajax({
+			     			url  : 地址
+			     			success ： 成功函数
+			     			error  : 失败的函数
+			     			data : 传送的数据
+			     			async : 同步异步默认 true
+			     			type  : 传送数据类型，默认get
+			     			dataType : 后台返回的数据类型
+			     			
+			     		})
+
+例子：
+$('#btn').on('click',function(){
+				$.ajax({
+					url:"php/ajax_xinxi_get.php?user="+$('#t').val(),
+					success:function(data){
+						console.log(data)
+					}
+				});
+			});
+
+ xml  :   自定义标签;
+
+第一种：缺陷：不标准的JSON格式就转换不了；
+			     JSON.parse()； 		     
+			     
+			         第二种把json转换为对象 ：
+			  		eval()
+			  			eval('('+data+')')
+			  			1. 会消耗更多的性能
+			 			2. 安全性低，会携带病毒
+			 
+			 	  第三种： Function
+			  		(new Function('','return'+data))();
+
+例子：
+btn.onclick = function(){
+				var val = t.value;
+				
+				$ajax({
+					url:'php/get_json.php?user='+val,
+					success:function(data){
+						//box.innerHTML = data;
+						// 返回值是一个字符串
+						// 
+						//var json = JSON.parse(data);
+						
+						
+						//var a = eval('('+data+')')
+						//  返回值是一个json 
+						
+						//var b = (new Function('','return'+data))()
+						
+						
+						console.log(b)
+					}
+				})
+			};
+
+
+例子一：
+<form action="upload_post_file.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" />
+			<input type="submit" value="提交" />
+		</form>
+		<script type="text/javascript">
+			/*
+			     上传文件只能是post ：
+			  	   enctype="multipart/form-data" : 二进制
+			  
+			*/
+		</script>
+
+例子二：
+<input type="file" id="f"/>
+		<input type="button" id="btn" value="上传开始"/>
+		
+		<script type="text/javascript">
+			var f = document.getElementById('f');
+			var btn = document.getElementById('btn');
+
+			btn.onclick = function(){
+				/*
+				      1.  获取要上传内容的信息；
+				      	  
+				      	  input标签里面有一个files属性，只是一个对象；
+				      	  
+				      	  通过下标来找具体的内容：
+				      	  	f.files[0];
+				      	  	上传文件的路径就是input的value；
+				      	  	
+				      	 
+				    2.  把获取的内容转换为二进制数；
+				    	new FormData();
+				    	
+				    	在 new FormData()有一个 append(key,vlaue)；
+				    		key : 有后台决定的值,是一个字符串；
+				    		value : 获取到的信息；
+				      	  	
+				 *  3. 在send里面把实例new FormData()发送到后台；
+				 * 		
+				 * 
+				 * */
+				var info = f.files[0];				
+				var Form = new FormData();				
+				Form.append('file',info);			
+				
+				var ajax = new XMLHttpRequest();				
+				ajax.open('post','upload_post_file.php',true);				
+				//ajax.setRequestHeader('Content-type','multipart/form-data');
+				ajax.send(Form);
+				ajax.onload = function(){
+					console.log(ajax.responseText);
+				}
+			}
+		</script>

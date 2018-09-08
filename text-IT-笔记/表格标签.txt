@@ -1,0 +1,26 @@
+表格标签：
+				table(最大父级):要层次，对应；
+					thead（表格的头部）：表格标题（只有一行）；
+					tbody（表格的身体）：表格内容（可多行）；
+					tfoot（表格的脚部）：表格页脚（可不要）；
+						tr（表示一行）：
+							th（加粗居中的单元格）：常放在thead里；
+							td（单元格）：
+							
+			属性：
+				写在th/td里：设置高度会影响整行，设置宽度会影响整列；
+					colspan:列合并；colspan="2"
+					rowspan:行合并；rowspan="3"
+					
+				写在table里：
+					cell（细胞）spacing（距离）:单元格与单元格之间的填充距离；
+					cellpadding:单元格的内边距（全方位的）；
+					
+			css样式：
+				写在table里：
+					border-collapse:边框合并；
+						collapse:合并；
+						separate:不合并；
+						
+			tr,th,td:加marging无效；
+			tr对padding无效，th、td才有效；

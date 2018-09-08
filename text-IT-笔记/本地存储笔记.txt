@@ -1,0 +1,69 @@
+本地存储：
+                                   1. cookie  
+			        
+			                 场景  ： 
+			                          在服务器环境里面才能用 
+			                 
+			                 存储：
+			            document.cookie
+			            	document.cookie = 'name=12; expires=时间';
+			            	document.cookie = 'name=12';
+			            	
+			                 取数据：  会把所有的存储都取出来
+			            document.cookie
+			        
+			                 存储数量：  最多存储数20条。
+			                 
+			        
+			                 删除：      设置一个过期时间，让浏览器自己删除；
+例子：
+inputs[2].onclick = function(){
+				var val1 = inputs[0].value;
+				var val2 = inputs[1].value;				
+				var data = new Date();				
+				data.setDate(data.getDate()+1);
+				document.cookie = 'userName='+val1+'; expires='+ data;
+				document.cookie = 'pass='+val2;
+				//alert('登录成功')
+				var arr = document.cookie.split('; ');
+				var obj = {};
+				for(var i=0;i<arr.length;i++){
+					var k = arr[i].split('=')[0];
+					var val = arr[i].split('=')[1];
+					obj[k] = val;
+				}；
+				inputs[0].value = obj.userName;
+				inputs[1].value = obj.pass;
+			}；
+
+
+h5的新属性  ： 
+         localStorage :  
+			         window.Storage :
+			  		场景：
+			  			
+			  			任意场所都能使用；
+			  
+			  		存储数据：
+			  			window.localStorage.setItem('key2',1234);
+
+			  		获取：
+			  			window.localStorage.getItem('key1')
+			  			window.localStorage;
+
+			  		存储数量：
+			  			最大可以存储5M
+			  			
+			  			1字 = 2bit；
+			                        1kb = 1024bit；
+			  			1m = 1024kb；
+			  			
+			                        512*1024*1024*5
+			      
+			       存储的时间：  一经存储永远存在；
+
+			  		删除存储的数据：
+			 			window.localStorage.removeItem('key2');
+			  			window.localStorage.clear();
+			  
+			      

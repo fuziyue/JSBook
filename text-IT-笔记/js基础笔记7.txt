@@ -1,0 +1,13 @@
+拖拽：
+        		拖拽的原理：由三个事件来组成；
+        		1、onmousedown;
+        		2、onmousemove;
+        		3、onmouseup;
+        		
+        		解决问题一：
+        			把onmousemove和onmouseup放到document里；
+        		
+        		解决问题二：
+        			在onmousedown里去掉浏览器的默认行为；
+
+focus() : 获取input的焦点；

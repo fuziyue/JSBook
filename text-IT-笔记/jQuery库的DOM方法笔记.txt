@@ -1,0 +1,126 @@
+prev() : 找到上一个jq兄弟对象；
+        	
+prevAll() : 找到所有当前的上一个jq兄弟对象；
+
+next() : 找到下一个jq兄弟对象；
+        	
+nextAll() : 找到所有当前的下一个jq兄弟对象；
+        	
+children() : 找到所有子元素；
+
+last() : 只所获取的元素里面的最后一个；
+        	
+first() : 只所获取的元素里面的第一个；
+
+siblings() : 排开自己以外的所有兄弟元素；
+        参数：指定选中排开自己以外的所有兄弟元素；
+
+parents() : 找到某元素所有的祖先节点；
+        通过参数来限定只找一个祖先级元素；
+        		
+remove() : 删除元素；
+
+find() : 找到元素的指定后代元素；
+        通过传参可以指定多个后代；
+        find('span,p,.box'):每个之间以逗号隔开；
+
+index() : 获取该元素在所有兄弟元素里面的下标；
+        参数：限定在某兄弟元素里面排序；
+
+创建元素：
+        第一种写法：$('<div></div>');
+        第二种写法：$('<div>');
+
+prepend(jq对象元素) : 往父级的开头插入一个元素；
+			
+append(jq对象元素) : 往父级的末尾插入一个元素；
+        	
+before() : 在某个元素前面插入一个元素；
+        兄弟节点.before(插入的元素)；
+        		
+after() : 在某个元素后面插入一个元素；
+        兄弟节点.after(插入的元素)；
+
+
+each() : 封装的for循环；
+				使用： 1、each($('li'),function(i,ele){});  //循环元素；
+					  2、$.each(arr,function(i,ele){});  //循环数组arr；
+
+在each循环里面写return ,相当于continue ，跳出当前这一个循环；
+				return false 相当于跳出整个循环；
+
+wrap() : 就是给某每一个元素加不是同一个父级；
+        		写法：$('.box').wrap('父级元素');
+        		
+        	wrapAll() : 给元素加同一个父级；
+        		写法：$('.box').wrapAll('指定父级元素');
+        		
+        	wrapInner() : 给元素里面的所有内容添加一个父级；
+        		写法：$('.box').wrapInner('指定父级元素');
+        		
+        	unwrap() : 删除元素的父级；
+
+offset() : getBoundingClientReact;
+        		相当于：offsetLeft和offsetTop的一个集合；
+        		它会把margin值算进去（少用offset）；
+        		
+        	position() : 也是相当于：offsetLeft和offsetTop的一个集合；
+        	
+        	width() : 获取元素的宽度；
+        	
+        	height() : 获取元素的高度；	
+
+on() : 事件可以多个：每个事件以空格隔开；
+        		写法： $('li').on('不带on的事件名',function(){});
+        			  $('li').on('click mouseenter',function(){});
+        		
+        		on()方法可以解绑事件，click()方法不可以；
+        	
+        	off() : 解绑事件；
+        		不传参：所有的事件都解绑；
+        		传参：传要解绑的那个事件；
+        	
+        	用on添加事件的时候，可以给事件加后缀；
+        	解绑的时候可以根据后缀来解绑某个事件；
+        	
+        		写法： $('li').on('click.1111',function(){});
+        			  $('li').off('click.1111');
+
+trigger() : 触发器，让一个事件触发执行；
+        		写法：$('元素').trigger(事件名)；
+        			$('#btn').trigger('click');
+
+ev : event事件对象（此event和源生的event是不一样的），是jq再次封装的事件对象，并不是源生的event事件对象，但是这里的event方法和源生的差不多（基本一样）；
+        	
+        		ev.preventDefault() : 阻止浏览器默认行为；
+        		return false : 阻止浏览器默认行为；
+
+直接return false 就可以阻止冒泡过程；
+        	
+        	jq的event里使用return false有三种功能：
+        		1、跳出整个循环（each循环）；
+        		2、阻止默认行为（event事件对象）；
+        		3、阻止冒泡过程（event事件对象）；
+
+第一种：
+animate(参数一，参数二，参数三,参数四) : 加动画效果的样式；
+        		参数一：目标样式，是一个对象；
+        		参数二：运动时间；
+        		参数三：运动的方式(默认的速度each),只有两种速度，each(先加速后减速)和linear(匀速)；
+        		参数四：回调函数，运动结束后调用的函数；
+        		写法：	$('.box').animate({
+        					top:'200px',
+        					left:300
+        				},1000,'linear',function(){});
+
+第二种：
+        	animate({目标样式},{
+        		duration : 1000 运动时间，
+        		easing : 'linear' 运动的方式，
+        		complete : function(){} 回调函数,
+        		step : function(now,fx){} 
+        	}):动画；
+        				
+        	animate还可以列队动画；			
+
+stop():关闭动画；

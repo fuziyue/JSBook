@@ -1,0 +1,36 @@
+兼容性：
+				1、标签；
+				2、css样式；
+				
+			标签的兼容：html5
+			
+			方法一：js写的地方：<script type="text/javascript">
+				
+			方法二：插件；
+
+			IE6的最小高度为16PX bug:解决方案，给标签加个overflow:hidden就可以设置最小高度;
+			
+			IE6浮动元素之间注释，导致多复制一个文字问题
+				解决方案：1、两个浮动元素之间不要加注释和行内标签；
+						 2、子元素和父元素的宽度只差小于3px；
+						 
+			IE6 7 父级元素的overflow:hidden 是包不住子级的relative
+				解决方案：给有position:relative的子级的父级再加多个position:relative
+				
+			IE6下定位元素父级宽高是奇数,绝对定位元素的right和bottom值会有1px的偏差
+				解决方案：把right和bottom改为left和top；
+
+			IE6下绝对定位元素和浮动元素并列绝对定位元素消失
+				解决方案：让定位元素和浮动元素不再同一级；
+				
+			IE6 下input的空隙
+				解决方案：用浮动解决；
+				
+			IE6 下 输入类型表单控件背景问题
+				解决方案：
+				
+			CSS heck（css骇客）：
+				骇客写法：
+					\9：backdround:pink\9;  IE10以及IE10以下版本的
+					* : *backdround:pink;   IE7以及IE7以下版本的
+					_ : _backdround:pink;    IE6以及IE6以下版本的

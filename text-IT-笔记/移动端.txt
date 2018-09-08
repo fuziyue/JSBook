@@ -1,0 +1,76 @@
+devicemotion  : 事件，只要运动的加速度发生改变，事件被触发
+
+ev.accelerationIncludingGravity  :  重力加速度的集合
+			  			x : 横屏；
+			  			y : 竖屏；
+			  			z : 垂直手机屏幕；
+例子：用用户代理信息来判断是iPhone和Android;
+var box = document.querySelector('.box');
+			window.addEventListener('devicemotion',function(ev){
+				//var motion = ev.accelerationIncludingGravity;
+				var x = ev.accelerationIncludingGravity.x;
+				var y = ev.accelerationIncludingGravity.y;
+				var z = ev.accelerationIncludingGravity.z;
+				
+				var str = window.navigator.userAgent;
+				if (str.indexOf('iPhone') != -1) {
+					x = -x;
+					y = -y;
+					z = -z;
+				}
+				box.innerHTML = '';
+				box.innerHTML += 'x轴：'+x.toFixed(3);
+				box.innerHTML += 'y轴：'+y.toFixed(3);
+				box.innerHTML += 'z轴：'+z.toFixed(3);
+			});
+
+例子：摇一摇；
+var box = document.getElementsByClassName('box')[0];
+			window.addEventListener('devicemotion',function(ev){
+				var motion = ev.accelerationIncludingGravity;
+				var x = motion.x;
+				var y = motion.y;
+				var z = motion.z;
+				
+				var str = window.navigator.userAgent;
+				if(str.indexOf('iPhone') != -1){
+					x = -x;
+					y = -y;
+					z = -z;
+				}
+				
+				var all = Math.abs(x)+Math.abs(y)+Math.abs(z);
+				
+				if(all > 80){
+					//alert('姚一瑶')
+					//var ajax = new XMLHttpRequest();
+					
+					box.innerHTML = '<h3>一大波僵尸正在靠近</h3>';
+				}
+			});
+			
+例子：重力便宜；
+var box = document.querySelector('.box');
+			
+			window.addEventListener('devicemotion',function(ev){
+				var x = ev.accelerationIncludingGravity.x;
+				var tran = getComputedStyle(box)['transform'];//获取元素的样式；
+				var arr = tran.split(', ');//因为获取到transform的值是矩阵，所以逗号有空格一起拆分；
+				var dirX = (parseFloat(arr[4]+x).toFixed(3);//把字符串强制转换为数字，取个小数；
+				
+				box.innerHTML = dirX;
+				box.style.transform = 'translate('+dirX+'px,0)';
+				console.log(dirX);
+			});
+			
+例子：判断图片是否加载完毕；
+var img = new Image();
+			img.src = 'https://imgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524736357447&di=48bf20562a4afe04c3352778a350f0ef&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F03%2F80%2Fdca4a2e321cd7365447fe8fa6f248836.jpg';
+			
+			img.onload = function(){
+				console.log('已经完成');
+			}
+			
+			img.onerror = function(){
+				console.log('加载失败');
+			}			

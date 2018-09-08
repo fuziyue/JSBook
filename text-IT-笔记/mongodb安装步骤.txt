@@ -1,0 +1,22 @@
+
+1.检测MongoDB是否安装成功
+	：mongod –help     //出现很长的代码声明成功
+
+2.设置MmongoDB的环境变量
+	:计算机>右键>属性>高级系统设置>环境变量>找到系统变量中的path变量向path变量的结尾处添加
+		C:\Program Files\MongoDB\Server\3.4\bin
+	
+3.设置数据和日志的储存位置   //就是数据存储的地方
+
+	E:\MongoDATA    //自己定义数据存储的地方
+	├─data
+		└─db  #MongoDB数据库中的数据的储存位置
+	└─log         #MongoDB数据库中的日志的储存位置
+    	   └─mongodb.log   # MongoDB数据库中的日志的储存文件
+
+4.在开始处用‘管理员身份’打开cmd命令行
+
+	输入：mongod --logpath "D:\MongoDATA\log\mongodb.log" --logappend --dbpath "D:\MongoDATA\data\db" --directoryperdb --serviceName "MongoDB" --serviceDisplayName "MongoDB" --install
+
+5.启动MongoDB服务
+	Net stop MongoDB

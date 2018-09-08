@@ -1,0 +1,97 @@
+标签的组成：
+			          标签名+属性=值
+			          公告属性：id(唯一性):box;
+			           style;
+			          私有属性：charset;    
+			          x=20
+			css：层叠样式表{}
+
+			写样式的几种方式：
+			1.行间样式 style(唯一性)；
+			2.内嵌样式（区别：标签和属性）；
+			3.外部引入样式 link（用于结构样式分离）；
+			css开头@charset "utf-8"编码格式；
+			css的三种写法:
+			css优先级：行内样式>内联样式>外联样式
+			
+			width:宽度；
+			height:长度；
+			background:背景；
+			background-color:设置背景颜色;
+			1.单词red；
+			2.三基色：00 00 00：rgb=red green blue; 
+			background-image:url(地址):背景图片，引入url;
+			background-repeat:背景是否平铺； repeat(重复)
+			background-repeat-x：在水平方向是否平铺；
+			background-repeat-y：在垂直方向是否平铺；
+			background-repeat-x:no-repeat:水平不平铺；
+			background-repeat-y:no-repeat:垂直不平铺；
+			background-position:x y设置背景图片的位置；
+			1.10px 20px（用像素写）;
+			2.10% 30%(用百分比写)；
+			3.left(左) 0,right(右) 0,center(居中) 0（用英语单词水平方向x 0）；
+			  0 top（上）,0 center ,0 bottom（下）(用英语单词水平方向0 y);
+			复合写法：background:red url(地址) no-repeat 20px 0px;
+			
+			边框：border;边框可以单独使用的；
+			border-color:边框的颜色；
+			border-width:边框的厚度；
+			border-style:边框的样式；
+			dashed(点线)、double(双线)、solid(实线)···
+			border-top-color:上边框的颜色；
+			border-bottom:下边框；
+			border-left:左边框；
+			border-right:右边框；
+			复合写法：border-right:solid red 10px;
+
+color:red,字体颜色；
+			
+			font:设置文字；
+			font-size:20px 文字大小；chrome默认12px 0<12(范围)
+			font-weight:字体粗细；normal(不常规（不加粗）)、bold(加粗或者数字600)
+			font-family:“微软雅黑”字体类型；默认宋体
+			font-style:字体倾斜；italic（倾斜）、默认initial(不倾斜)
+			
+			line-height:20px(行高，调节文字垂直方向的位置x2倍)；
+			
+			text-align:left、center、right（调节文本在水平的偏移位置）;
+			text-indent:10px 首行缩进（调节文本在水平的偏移位置）；
+			list-style(列表类型):none；
+			
+			字体复合写法：font:weight style size/line-height family;
+							bold italic 50px/40px "微软雅黑" 特殊点；
+			          					（后两个必须在一起）
+			text-decoration（修饰文本线条位置）:underline（下滑线）；
+			    overline(上滑线)、line-through(删除线)、underline(下滑线)、none:没有线条(默认值)
+			
+			letter（信）-spacing（空间）:10px;(字母间距)
+			word（词）-spacing:20px;(单词间距)
+			white-space(文本强制不换行):normal（换行），nowrap:（不换行）；
+			
+			padding:（内边距：标签内边到自己内容的距离）；
+			  padding-top(上内边距)
+			  padding-bottom(下内边距)
+			  padding-left(左内边距)
+			  padding-right(右内边距)
+			复合写法：
+			   1、padding:10px（上） 20px（右） 30px（下） 40px（左）(当四个值时，顺时针方向)；
+			   2、padding:10px(上) 20px（右） 30px（下）(当三个值时，顺时针方向，第四个值默认对角方向值)；
+			   3、padding:10px（上） 20px(右)（当两个值时，顺时针方向，第三、四值默认各对角方向值）；
+			   4、padding:10px(当一个值时，会默认各个方向值一样)；
+			   
+			div:特点（弹性）：当没有给div，width，它会继承父级标签；
+				高度：当没有设置高度时，是由内容（包括标签）撑开；
+				
+			margin:外边距（拉开标签与标签的距离）；
+			margin-top（上外边距）
+			margin-right（右外边距）
+			margin-bottom（下外边距）
+			margin-left（左外边距）
+			margin：缺陷：margin-top（只有它）：
+				1、首个子标签，子标签div设置了margin-top，子标签会把margin-top传递给父级标签；
+				2、在div里面两个子标签分别设置了margin-top和margin-bottom，这两个值会重叠在一起，谁的值大就是谁的；
+				总结：能用padding时就不要用margin；
+			复合写法：和padding是一样的；
+			margin有个特殊值：auto（自适应）；上下无auto值：因为网页上下有个无限值；
+			
+			*（通配符）：全部的标签，所有；

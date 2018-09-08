@@ -1,0 +1,27 @@
+弹性盒模型：
+			
+				新版：display:flex；
+					水平方向为主轴
+					设置主轴(x轴)方向：
+						flex-direction:row;(从左往右排列)
+							值：    row;(从左往右排列)默认值
+								row-reverse;(从右往左排列)
+								column;(从上往下排列)
+								column-reverse;(从下往上排列)
+					
+				旧版：display:-webkit-box;
+					水平方向为主轴
+						
+						设置主轴方向：
+						-webkit-box-orient:horizontal;(设置主轴(x轴)方向)
+							值：    horizontal;(设置主轴(x轴)方向)默认值  
+								vertical;(设置侧轴(y轴)方向)
+								
+						排列顺序：
+						-webkit-box-direction: normal;(从左往右排列)
+							值：  normal;(从左往右排列)
+							   reverse;(倒序排列)
+							
+						注：必须三个搭配在一起；
+					
+					垂直方向为侧轴

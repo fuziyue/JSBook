@@ -1,0 +1,65 @@
+html表单标签:form、input、label、
+				form(父级):
+					属性:
+					action:值是跳转的路径或地址;
+					method:传送数据的方式;
+						get:url地址栏看得见数据（透明性）；
+						post:url地址栏看不见数据（安全性、隐藏性）；
+					enctype:传送数据的进制数类型,multipart/form-data:二进制;
+					
+				input(子级):输入框
+					属性:
+					type:指定input的类型;
+						text:文本输入框(默认值类型);
+						password:密码输入框;
+						radio:单选框(只能选一次);
+						checkbox:复选框(可确定打勾，可取消)；
+						submit:提交框(只有它能发送信息);
+						botton:按钮（普通按钮）；
+
+                                        outline:none;(内边框)
+						
+					type:"botton"
+					disabled(禁止点击)js才可以加值；
+					
+					type:"checkbox"
+					checked:是否是选中状态，不要值；
+						
+					name:传到服务器的数据就放在后台(值要同一个);
+					value:默认的输入内容,就是输入框里面的内容;
+					
+					maxlength(限制输入框能输入的最大长度)：值是个数字；
+						maxlength："8";
+						
+					palceholder(当输入框没有任何东西的时候显示文字):值看需求（请输入密码）；
+					
+					
+						
+				label:辅助input标签;
+					for:值(id名);
+					
+			
+			特俗表单：
+				属性：
+				file:选择文件；
+				hidden:隐藏输入框；
+				reset:重置信息输入框；
+				
+				h5:html5
+				color:选择颜色框；
+				number:选择数字框；
+				date:选择时间框；
+				image:图片按钮；
+
+textarea（文本域）自带了resize样式，可none:
+				属性：
+				rows:设置文本域行数；
+				cols:设置文本域列数；
+				
+				resize:拖动标签让标签的宽高发生改变；
+					horizontal:水平方向
+					vertical:竖直方向
+					both:两个方向都
+					
+			select（下拉列表）父级:
+				option子级；

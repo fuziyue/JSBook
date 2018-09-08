@@ -1,0 +1,52 @@
+Less:预编译语言；
+				1、变量写法：@变量名：值=@text（字母开头，数字，_）;
+				2、继承：复制某个选择器的样式；
+				3、混合：
+					（1）不带参数（变量）值的混合；
+					
+					.borderRadius(){
+						-webkit-border-radius:50%;
+						-moz-border-radius:50%;
+						-ms-border-radius:50%;
+						border-radius:50%;
+					}
+					
+					（2）带参数（变量）值的混合；
+					
+					@width
+					
+					.borderRadius(@width){
+						-webkit-border-radius:@width;
+						-moz-border-radius:@width;
+						-ms-border-radius:@width;
+						border-radius:@width;
+					}
+					
+					(3)带参数（变量）而且有默认值的混合；
+					.borderRadius(@width:30px){
+						-webkit-border-radius:@width;
+						-moz-border-radius:@width;
+						-ms-border-radius:@width;
+						border-radius:@width;
+					}
+					
+				4、运算：less中任何数字、颜色或者变量都可以（+-*/）；
+				
+				5、嵌套：&(与)是上一级；
+
+预编译语言种类与区别：	
+			1、Less:
+				@x：12
+				ul{
+					li{
+						
+					}
+				};
+			
+			2、sass：
+				&x:12
+				ul
+					li；
+					
+			3、styleu:
+				@a=12；
